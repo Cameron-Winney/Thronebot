@@ -41,14 +41,17 @@ client.on('message', message => {
     if (command === `members`) {
         client.commands.get('members').execute(message, args);
     }
-    if (command === 'roll') {
+    if (command === `roll`) {
         client.commands.get('roll').execute(message, args);
     }
     if (command === 'coin') {
         client.commands.get('coin').execute(message, args);
     }
-    if (command === `magic-8-ball`) {
-        client.commands.get('magic-8-ball').execute(message, args);
+    if (command === '8ball') {
+        client.commands.get('8ball').execute(message, args);
+    }
+    if (command === `multi-dice`) {
+        client.commands.get('multi-dice').execute(message, args);
     }
 
 
