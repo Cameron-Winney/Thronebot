@@ -11,12 +11,14 @@ module.exports = {
         }
         if (diceArray[1] !== undefined) {
             for (let j = 0; j < diceArray.length; j++) {
-                diceObj[j] = Math.floor(Math.random() * diceArray[j]) + 1
+                diceObj[j + 1] = Math.floor(Math.random() * diceArray[j]) + 1
             }
-        }
-        message.channel.send(`The results are: `)
-        for (const property in diceObj){
-            message.channel.send(`${parseInt(property) + 1}: ${diceObj[property]}`)
+            message.channel.send(`The results are: `)
+            for (const property in diceObj){
+                message.channel.send(`${property}: ${diceObj[property]}`)
+            } 
+        } else {
+            return message.channel.send("Unknown runtime error")
         }
     }
 }
