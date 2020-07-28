@@ -1,20 +1,44 @@
+const { prefix } = require('../config.json')
 module.exports = {
     name: 'help',
     description: 'Gives you list of commands.',
-    execute(message) {
-        message.channel.send(
-`\`\`\`
->>help -- gives you list of commands.
->>user-info -- gives you anyone's real username and discord ID.
->>members -- lists how many people are in the server.
->>roll _ -- Roll a die. The number of sides can be set. By default it will roll 6 sided die.
->>multi-dice -- Roll multiple dice, numbers are passed as the sides of the dice. 
-                Example: 6 10 20 will return 3 dice of sides 6, 10, and 20.
->>coin -- Heads or Tails?
->>8ball -- Cast your question to fate!
+    aliases: ["commands"],
+    usage: "[command name]",
+    cooldown: 5,
+    execute(message, args) {
+        const data = []
+        const { commands } = message.client
 
-THESE ARE ADMIN ONLY!
->>kick -- kicks specified user.
->>ban -- bans specified user.\`\`\``)
+        if (!args.length){
+            data.push('Here\'s a list of The Throne\'s commands:\n')
+            data.push(commands.map(command => command.name).join(', '))
+            data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command.`)
+
+            return message.author.send(data, { split: true})
+                .then(() => {
+                    if (message.channel.type === 'dm') return;
+                    message.reply('Your commands, my liege.')
+                })
+                .catch(error => {
+                    console.error(`Cound not send help DM to ${message.author.tag}.\n`, error)
+                    message.reply(`The Throne does not respond to closed DMs.`)
+                })
+        }
+        const name = args[0].toLowerCase()
+        const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name))
+
+        if (!command) {
+            return message.reply("Not a valid command.")
+        }
+
+        data.push(`**Name:** ${command.name}`)
+
+        if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`)
+        if (command.description) data.push(`**Description:** ${command.description}`)
+        if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`)
+
+        data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`)
+
+        message.channel.send(data, { split: true })
     }
 }

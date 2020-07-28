@@ -1,6 +1,8 @@
 module.exports = {
     name: 'roll',
-    description: 'rolls a dice of whatever number you choose',
+    description: 'rolls a dice of whatever number you choose. default is a d6',
+    aliases: ["d6"],
+    usage: "[number]",
     execute(message,args) {
         if(!args.length) {
             let num = Math.floor((Math.random() * 6 + 1)); 

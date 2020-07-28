@@ -2,9 +2,7 @@
 ### This bot is co-authored by Thorn and Cameron Winney.
 
 #### Todo
-- [x] Add Multidice Roller
-- [x] Update !help blurb
-- [ ] Add proper feedback to those trying to access Admin commands
+- [x] Add proper feedback to those trying to access Admin commands
 - [ ] Hi-Fidelity Spotify functionality
 - [ ] ?????
 - [ ] Attack and Dethrone God
