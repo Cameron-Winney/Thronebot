@@ -16,15 +16,17 @@ const command = args.shift().toLowerCase();
     //general commands
     if (message.content === `${prefix}help`) {
         message.channel.send(`
-    !help - gives you list of commands.
-    !ping - Pong!
-    !user-info - gives you anyone's real username and discord ID.
-    !members - lists how many people are in the server.
-    !roll _ - you can put a number after and it will roll a die for you. By default it will roll 6 sided die.
-    !coin - I will flip a coin for you.
+    >>help -- gives you list of commands.
+    >>ping -- Pong!
+    >>user-info -- gives you anyone's real username and discord ID.
+    >>members -- lists how many people are in the server.
+    >>roll _ -- you can put a number after and it will roll a die for you. By default it will roll 6 sided die.
+    >>multi-dice -- similar to >>roll but you can roll multiple dice.
+    >>coin -- I will flip a coin for you.
+    >>magic-8-ball -- you can ask a question and I will give you an answer.
     THESE NEXT ONES ARE ADMIN ONLY!
-    !kick - kicks specified user.
-    !ban - bans specified user.`)
+    >>kick -- kicks specified user.
+    >>ban -- bans specified user.`)
     }
 
     if (message.content === `${prefix}ping`) {
@@ -60,8 +62,18 @@ const command = args.shift().toLowerCase();
         }
     }
     if (command === `magic-8-ball`) {
-        let responses = ["As I see it, yes.","Ask again later.","Ask again later.","Cannot predict now."
-    ,"Concentrate and ask again.","Don’t count on it.","It is certain.","It is decidedly so.","Most likely."]
+        let responses = ["As I see it, yes.", "Ask again later.", "Ask again later.", "Cannot predict now."
+            , "Concentrate and ask again.", "Don’t count on it.", "It is certain.", "It is decidedly so.",
+            "Most likely.","My reply is no.","My sources say no.","Outlook not so good.","Outlook good.",
+            "Reply hazy, try again."," Signs point to yes."," Very doubtful.","Without a doubt.","Yes.",
+            "Yes – definitely.","You may rely on it."]
+
+            if(!args.length) {
+                message.reply("You need to ask a question also!")
+            } else {
+                let num = Math.floor((Math.random() * 6) + 1);
+                message.reply(responses[num])
+            }
     }
 
 
