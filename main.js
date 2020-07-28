@@ -30,8 +30,13 @@ client.on('message', message => {
         client.commands.get('help').execute(message, args);
     }
 
+<<<<<<< HEAD
     if (command === `ping`) {
         client.commands.get('ping').execute(message, args);
+=======
+    if (message.content.startsWith(`${prefix}ping`)) {
+        message.channel.send("pong")
+>>>>>>> d6528d8caf437532ad60c7a5f804a0891ca08872
     }
 
     if (command === `user-info`) {
@@ -42,6 +47,7 @@ client.on('message', message => {
         client.commands.get('members').execute(message, args);
     }
     if (command === 'roll') {
+<<<<<<< HEAD
         client.commands.get('roll').execute(message, args);
     }
     if (command === 'coin') {
@@ -49,6 +55,54 @@ client.on('message', message => {
     }
     if (command === `magic-8-ball`) {
         client.commands.get('magic-8-ball').execute(message, args);
+=======
+        const numCheck = args[0].match(/\d+/) // (/\d+/) extracts numbers from strings when used with the match string method. Returns an array of the numbers exclusively.
+        if (!args.length) {
+            let num = Math.floor((Math.random() * 6) + 1);
+            return message.channel.send(`You rolled a ${num}!`)
+        }
+        else if (numcheck) {
+            let num = Math.floor((Math.random() * parseInt(numCheck[0]) + 1));
+            return message.channel.send(`You rolled a ${num}!`)
+        }
+        else if (isNaN(args[0])) {
+            return message.reply("That's not a number!")
+        }
+        else {
+            let num = Math.floor((Math.random() * args[0]) + 1);
+            return message.channel.send(`You rolled a ${num}!`)
+        }
+
+    }
+    if (command === 'multi-dice') {
+        let diceArray = []
+        let diceObj = {}
+        for (let i = 0; i < args.length; i++) {
+            diceArray.push(args[i].match(/\d+/))
+        }
+        if (args.length < 2) { return message.channel.send("Multi Dice only works with 2 or more dice. If you wanted one die, use !roll.") }
+
+        else if (diceArray[1] !== undefined) {
+            for (let j = 0; j < diceArray.length; j++) {
+                diceObj[j] = Math.floor(Math.random() * diceArray[j]) + 1
+            }
+            return message.channel.send("The results are:" + JSON.stringify(diceObj))
+        } else {
+            return message.channel.send("Unknown runtime error")
+        }
+    }
+    if (command === 'coin') {
+        let coin = Math.ceil(Math.random() * 2);
+        if (coin === 1) {
+            return message.reply('The coin landed on heads!')
+        } else {
+            return message.reply('The coin landed on tails')
+        }
+    }
+    if (command === `magic-8-ball`) {
+        let responses = ["As I see it, yes.", "Ask again later.", "Ask again later.", "Cannot predict now."
+            , "Concentrate and ask again.", "Don’t count on it.", "It is certain.", "It is decidedly so.", "Most likely."]
+>>>>>>> d6528d8caf437532ad60c7a5f804a0891ca08872
     }
 
 
