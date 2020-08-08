@@ -1,8 +1,10 @@
-# Welcome to ThroneBot!
-### This bot is co-authored by Thorn and Cameron Winney.
+# Welcome to ThroneBot! 
+
+This bot is co-authored by Thorn and Cameron Winney.
 
 #### Todo
 - [x] Add proper feedback to those trying to access Admin commands
+- [x] Add Role giving functionality
 - [ ] Hi-Fidelity Spotify functionality
 - [ ] ?????
 - [ ] Attack and Dethrone God

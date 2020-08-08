@@ -3,18 +3,24 @@ module.exports = {
     name: 'help',
     description: 'Gives you list of commands.',
     aliases: ["commands"],
-    usage: "[command name]",
-    cooldown: 5,
+    cooldown: 10,
     execute(message, args) {
         const data = []
         const { commands } = message.client
 
-        if (!args.length){
+        if (!args.length) {
             data.push('Here\'s a list of The Throne\'s commands:\n')
-            data.push(commands.map(command => command.name).join(', '))
+            data.push(
+                commands.filter(command => {
+                    if (command.dev) return false
+                    return true
+                })
+                .map(command => command.name)
+                .join(', ')
+            )
             data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command.`)
 
-            return message.author.send(data, { split: true})
+            return message.author.send(data, { split: true })
                 .then(() => {
                     if (message.channel.type === 'dm') return;
                     message.reply('Your commands, my liege.')

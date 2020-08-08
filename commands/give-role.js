@@ -1,21 +1,21 @@
-const { Guild } = require("discord.js")
-const { guildOnly } = require("./ban")
-
 module.exports = {
     name: 'give-role',
-    description: 'you can specify a role and a user and give them said role.',
+    description: 'Specify a role and a user to give them that role.',
+    args: true,
+    aliases: ["role"],
     execute(message,args) {
         if (message.member.hasPermission("MANAGE_ROLES")) {
-
-            let role = message.guild.roles.find(r => r.name === args[0]);
-
-            // Let's pretend you mentioned the user you want to add a role to (!addrole @user Role Name):
+            // Search through the roles and compare their names to the second argument passed
+            let role = message.guild.roles.cache.find(role => role.name === args[1])
+            let roleID = role.id
+            // Find the first member mentioned
             let member = message.mentions.members.first();
-            
-            // or the person who made the command: let member = message.member;
-            
+            // Check to see if the member already has the role in their cached profile.
+            if(member._roles.find(role => role == roleID)) return message.reply(`${member} already has role ${role.name}`)
             // Add the role!
-            member.addRole(role).catch(console.error);
+            member.roles.add(role)
+                .then(message.reply(`${member} has been given role ${role.name}`))
+                .catch(console.error);
         }
     }
 }
