@@ -3,10 +3,11 @@ module.exports = {
     description: 'Specify a role and a user to give them that role.',
     args: true,
     aliases: ["role"],
+    usage: "[Role] [@User]",
     execute(message,args) {
         if (message.member.hasPermission("MANAGE_ROLES")) {
             // Search through the roles and compare their names to the second argument passed
-            let role = message.guild.roles.cache.find(role => role.name === args[1])
+            let role = message.guild.roles.cache.find(role => role.name === args[0])
             let roleID = role.id
             // Find the first member mentioned
             let member = message.mentions.members.first();
@@ -14,7 +15,7 @@ module.exports = {
             if(member._roles.find(role => role == roleID)) return message.reply(`${member} already has role ${role.name}`)
             // Add the role!
             member.roles.add(role)
-                .then(message.reply(`${member} has been given role ${role.name}`))
+                .then(message.reply(`${member} has been given the role ${role.name}`))
                 .catch(console.error);
         }
     }

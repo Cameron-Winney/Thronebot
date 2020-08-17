@@ -16,9 +16,8 @@ module.exports = {
         for (let j = 0; j < diceArray.length; j++) {
             diceObj[j + 1] = Math.floor(Math.random() * diceArray[j]) + 1
         }
+        let diceString = JSON.stringify(diceObj)
         message.channel.send(`The results are: `)
-        for (const property in diceObj) {
-            message.channel.send(`Dice ${property}: ${diceObj[property]}`)
-        }
+        message.channel.send(diceString.substring(1, (diceString.length - 1)).split(","))
     }
 }
