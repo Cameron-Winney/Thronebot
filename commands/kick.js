@@ -4,6 +4,7 @@ module.exports = {
     name: 'kick',
     description: 'kicks specified user',
     guildOnly: true,
+    admin: true,
     execute(message, args) {
         const user = message.mentions.users.first();
         let reason = args[2]

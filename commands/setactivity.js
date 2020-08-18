@@ -3,6 +3,7 @@ module.exports = {
 	description: 'Change what the bot status shows',
 	aliases: ["activity"],
 	dev: true,
+	admin: true,
 	execute(message, args) {
 		const client = message.guild.members.client
 		const activity = args.join(" ").toString() || null

@@ -4,6 +4,7 @@ module.exports = {
     args: true,
     aliases: ["role"],
     usage: "[Role] [@User]",
+    admin: true,
     execute(message,args) {
         if (message.member.hasPermission("MANAGE_ROLES")) {
             // Search through the roles and compare their names to the second argument passed

@@ -18,6 +18,6 @@ module.exports = {
         }
         let diceString = JSON.stringify(diceObj)
         message.channel.send(`The results are: `)
-        message.channel.send(diceString.substring(1, (diceString.length - 1)).split(","))
+        message.channel.send(diceString.substring(1, (diceString.length - 1)).split("\"").join(""))
     }
 }

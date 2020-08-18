@@ -4,6 +4,7 @@ module.exports = {
     "name": "unban",
     "description": "Unban those deemed worthy.",
     "args": true,
+    admin: true,
     execute (message, args){
         if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("You can't do that!")
         if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send(`Silly ${message.guild.me}, you attempt to access a power you do not control.`)

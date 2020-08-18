@@ -2,6 +2,7 @@ module.exports = {
     name: 'ban',
     description: 'bans specified user',
     guildOnly: true,
+    admin: true,
     execute(message) {
         if (message.member.hasPermission("BAN_MEMBERS")) {
             const author = message.author
