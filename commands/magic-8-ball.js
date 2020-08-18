@@ -3,7 +3,7 @@ module.exports = {
 	description: 'Cast your question to fate!',
 	args: true,
 	aliases : ["8ball", "fate"],
-	usage: "Your Question Here",
+	usage: "\"Your Question Here\"",
 	execute(message, args) {
 		const responses = ["As I see it, yes.", "Ask again later.", "Ask again later.", "Cannot predict now.", 
 		"Concentrate and ask again.", "Don’t count on it.", "It is certain.", "It is decidedly so.",

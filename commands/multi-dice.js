@@ -20,9 +20,9 @@ module.exports = {
         const diceEmbed = new Discord.MessageEmbed()
             .setTitle("Dice Results")
             .setFooter("This post brought to you by NerdBot", client.user.displayAvatarURL())
-            for (let j=0; j<diceArray.length; j++){
-                diceEmbed.addField(`Die ${j+1}, ${sidesArray[j]} sides`, diceArray[j], true)
-            }
+            diceArray.forEach((currentValue, index) => {
+                diceEmbed.addField(`Die ${index+1}, ${sidesArray[index]} sides`, currentValue, true)
+            })
         message.channel.send(diceEmbed)
         
     }
